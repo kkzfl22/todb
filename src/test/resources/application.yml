@@ -1,0 +1,33 @@
+mybatis:
+  mapper-locations: classpath*:/mapper/*Mapper.xml  #注意：一定要对应mapper映射xml文件的所在路径
+
+spring:
+  application:
+    name: zsc-cm
+  #强制输出编码格式
+  http:
+    encoding:
+      force: true
+  transaction-thread-pool:
+    min-num: 1
+    max-num: 4
+    queue-size: 10
+    keepalive: 30
+  datasource:
+    name: zsc-db
+    type: com.zaxxer.hikari.HikariDataSource
+    #监控统计拦截的filters
+    driver-class-name: dm.jdbc.driver.DmDriver
+    #基本属性
+    url: jdbc:dm://192.168.1.4:5238?schema=DATAUSER&rewriteBatchedStatements=true
+    #url: jdbc:dm://192.168.1.4:5238?schema=DATAUSER
+    username: SYSDBA
+    password: 'SYSDBA'
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  #设置时间问题
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: Asia/Shanghai
+

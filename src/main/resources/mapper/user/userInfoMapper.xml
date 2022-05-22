@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--数据库操作-->
+<mapper namespace="org.liujun.test.db.plusbatch.mapper.UserInfoMapper">
+
+    <!--批量添加-->
+    <insert id="batchInsert" parameterType="org.liujun.test.db.data.entity.UserInfoData">
+        insert into userinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            user_name,
+            pwd,
+            full_name,
+            phone,
+            email,
+            card_id,
+            address,
+            city,
+            create_time
+        </trim>
+        values
+        <foreach collection="list" item="item" open="(" separator="),(" close=")" index="index">
+            #{item.id,jdbcType=BIGINT},
+            #{item.userName,jdbcType=VARCHAR},
+            #{item.pwd,jdbcType=VARCHAR},
+            #{item.fullName,jdbcType=BIGINT},
+            #{item.phone,jdbcType=VARCHAR},
+            #{item.email,jdbcType=VARCHAR},
+            #{item.cardId,jdbcType=TINYINT},
+            #{item.address,jdbcType=VARCHAR},
+            #{item.city,jdbcType=TIMESTAMP},
+            #{item.createTime,jdbcType=VARCHAR}
+        </foreach>
+    </insert>
+</mapper>
